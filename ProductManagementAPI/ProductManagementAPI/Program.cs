@@ -1,3 +1,4 @@
+using ProductManagementAPI.Entities;
 using ProductManagementAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<ProductManagementDbContext>();
+builder.Services.AddScoped<ProductManagementDbSeeder>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();

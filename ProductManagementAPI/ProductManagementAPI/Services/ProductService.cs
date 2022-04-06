@@ -1,17 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProductManagementAPI.Entities;
 using ProductManagementAPI.Models;
 
 namespace ProductManagementAPI.Services
 {
     public class ProductService : IProductService
     {
-        public ProductService() // will get database context
+        private readonly ProductManagementDbContext _dbContext;
+        public ProductService(ProductManagementDbContext dbContext) // will get database context
         {
-
+            _dbContext = dbContext;
         }
 
         public IEnumerable<ProductDto> GetAllProducts()
         {
+
             return new List<ProductDto>();
         }
 
