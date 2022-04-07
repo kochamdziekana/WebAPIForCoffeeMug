@@ -29,18 +29,22 @@ namespace ProductManagementAPI.Controllers
 
         [HttpPost]
         public ActionResult<Guid> AddProduct([FromBody] NewProductDto dto) {
-            return Ok();
+            var addedProductGuid = _productService.AddProduct(dto);
+            return Created($"/api/product/{addedProductGuid}", null);
         } 
     
         [HttpPut]
         public ActionResult UpdateProduct([FromBody] UpdateProductDto dto)
         {
+            _productService.UpdateProduct(dto);
+
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteProduct([FromBody] Guid id)
         {
+            _productService.DeleteProduct(id);
             return NotFound();
         }
     }

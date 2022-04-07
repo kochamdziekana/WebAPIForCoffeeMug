@@ -4,8 +4,10 @@ namespace ProductManagementAPI.Entities
 {
     public class ProductManagementDbContext : DbContext
     {
-        private string _connectionString =
-            "Server=(localdb)\\mssqllocaldb;Database=ProductManagement;Trusted_Connection=True;"; // to be added to appsettings
+        public ProductManagementDbContext(DbContextOptions<ProductManagementDbContext> options) : base(options)
+        {
+
+        }
 
         public DbSet<Product> Products { get; set; }
 
@@ -14,11 +16,6 @@ namespace ProductManagementAPI.Entities
             modelBuilder.Entity<Product>()
                 .Property(u => u.Name)
                 .IsRequired();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer();
         }
     }
 }
