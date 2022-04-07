@@ -22,7 +22,7 @@ namespace ProductManagementAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ProductDto> GetProductById(Guid id) {
+        public ActionResult<ProductDto> GetProductById([FromRoute] Guid id) {
             var product = _productService.GetProductById(id);
             return Ok(product);
         }
@@ -42,7 +42,7 @@ namespace ProductManagementAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteProduct([FromBody] Guid id)
+        public ActionResult DeleteProduct([FromRoute] Guid id)
         {
             _productService.DeleteProduct(id);
             return NotFound();

@@ -82,6 +82,7 @@ namespace ProductManagementAPI.Services
             }
 
             _dbContext.Products.Remove(productToBeDeleted);
+            _dbContext.SaveChanges();
         }
 
     }
