@@ -19,6 +19,7 @@ builder.Services.AddScoped<ProductManagementDbSeeder>();
 builder.Services.AddScoped<IValidator<NewProductDto>, NewProductDtoValidator>();
 builder.Services.AddScoped<IValidator<UpdateProductDto>, UpdateProductDtoValidator>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -30,10 +31,16 @@ app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductManagementAPI");
+});
 
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();
 
